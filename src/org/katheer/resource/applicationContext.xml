@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Traditional Approach -->
+    <bean id="add1" class="org.katheer.bean.Address">
+        <constructor-arg value="4/327A, Muslim Street, Paraipatty"/>
+        <constructor-arg value="Periyakottai PO, Dindigul"/>
+        <constructor-arg value="624306"/>
+    </bean>
+    <bean id="std1" class="org.katheer.bean.Student">
+        <constructor-arg value="Abdul Katheer"/>
+        <constructor-arg value="S101"/>
+        <constructor-arg value="IT"/>
+        <constructor-arg ref="add1"/>
+    </bean>
+
+    <!-- Using c-namespace -->
+    <!-- 1. Using argument names -->
+    <bean id="add2" class="org.katheer.bean.Address" c:firstLine="4/167, Mahalakshmi Nagar, Kovilur Pirivu"
+          c:secondLine="Seelapadi PO, Dindigul" c:pin="624005"/>
+    <bean id="std2" class="org.katheer.bean.Student" c:name="Katheer" c:regNo="S102" c:dept="CSE"
+          c:address-ref="add2"/>
+
+    <!-- 2. Using index values -->
+    <bean id="add3" class="org.katheer.bean.Address" c:_0="182, 3rd street" c:_1="Vengaya Pettai, Cuddalore"
+          c:_2="607891"/>
+    <bean id="std3" class="org.katheer.bean.Student" c:_0="Dhanalakshmi" c:_1="S103"
+          c:_2="ECE" c:_3-ref="add3"/>
+</beans>
